@@ -1,0 +1,24 @@
+<h1>Login</h1>
+
+<div >
+    <input id="input-username" type="text" placeholder="Username:" name="username" />
+    <input id="input-password" type="password" placeholder="Password:" name="password" />
+    <button onclick="login()" type="button" id="login-btn">login</button>
+</div>
+
+<script>
+ function login(){
+     var username = document.getElementById("input-username").value;
+     var password = document.getElementById("input-password").value;
+
+     var xhr = new XMLHttpRequest();
+     xhr.addEventListener('load', function(event) {
+         window.location.href = xhr.responseURL;
+     });
+     var userdata = {username: username, password:password};
+     var postdata = JSON.stringify(userdata);
+     xhr.open("POST","http://localhost:3000/login",false);
+     xhr.setRequestHeader('Content-Type', 'application/json');
+     xhr.send(postdata);
+ }
+</script>
